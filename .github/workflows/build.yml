@@ -1,0 +1,31 @@
+name: build
+
+on:
+  push:
+    branches:
+      - ci-test
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2.3.4
+        with:
+          token: ${{ secrets.PAT }}
+
+      - name: Build conf
+        run: |
+          pip install -r requirements.txt
+          cd factory
+          python3 ad.py
+          python3 gfwlist.py
+          python3 build_confs.py
+
+      - name: Push
+        run: |
+          git checkout ci-test
+          git config --global user.name GitHub
+          git config --global user.email noreply@github.com
+          git commit -am "Automatic built at $(date -u +'%Y-%m-%dT%TZ')"
+          git push -u origin ci-test

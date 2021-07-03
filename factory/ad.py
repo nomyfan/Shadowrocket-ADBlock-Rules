@@ -17,8 +17,6 @@ rules_url = [
     #'https://easylist-downloads.adblockplus.org/easylistchina.txt',
     # EasyList + China
     'https://easylist-downloads.adblockplus.org/easylistchina+easylist.txt',
-    # 乘风 广告过滤规则
-    'https://raw.githubusercontent.com/xinggsf/Adblock-Plus-Rule/master/ABP-FX.txt'
 ]
 
 rule = ''
